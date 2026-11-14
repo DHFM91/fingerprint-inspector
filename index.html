@@ -26,7 +26,7 @@
   .topbar a { text-decoration: none; font-weight: 600; }
 
   header.hero { background: var(--hero); border-bottom: 1px solid var(--line); padding: 44px 0 52px; }
-  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: start; }
   .kicker { color: var(--accent); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: 12px; }
   h1 { font-size: clamp(38px, 6.5vw, 64px); margin: 8px 0 14px; }
   .lede { color: var(--muted); font-size: 18px; margin: 0 0 20px; max-width: 560px; }
@@ -75,11 +75,11 @@
   .legal th, .legal td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
   .legal p, .legal li { color: #3b3640; }
 
-  footer { margin-top: 32px; padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+  footer { margin-top: 56px; padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
   footer p { margin: 4px 0; }
 
   /* support with crypto (collapsible, above the footer) */
-  details.support{max-width:900px;margin:44px auto 0;padding:0 16px 14px;text-align:center}
+  details.support{max-width:560px;margin:22px 0 0}
   details.support[hidden]{display:none}
   details.support summary{display:inline-flex;align-items:center;gap:9px;cursor:pointer;list-style:none;font-size:14px;font-weight:600;color:var(--accent);padding:8px 18px;border:1px solid var(--stripe);border-radius:999px;background:rgba(255,255,255,.7);user-select:none}
   details.support summary::-webkit-details-marker{display:none}
@@ -87,7 +87,7 @@
   details.support[open] summary::after{transform:rotate(180deg)}
   details.support summary:hover{background:var(--panel)}
   details.support summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  .coins{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:12px;text-align:left}
+  .coins{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:12px;text-align:left}
   .coin{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
   .coin-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
   .coin-head strong{font-size:15px;color:var(--text)}
@@ -126,6 +126,10 @@
       <span class="chip">Nothing leaves your computer</span>
     </div>
     <a class="btn" href="#download">Download</a><a class="btn ghost" href="#how">How it works</a>
+    <details class="support" id="support" hidden>
+     <summary><span aria-hidden="true">♥</span> Support my work with crypto</summary>
+     <div class="coins" id="coins"></div>
+    </details>
   </div>
   <img class="shot" src="images/this-site.png" alt="The extension's This site tab listing fingerprinting techniques used by an example shop page" width="460" height="900">
 </div></header>
@@ -325,11 +329,6 @@
 </section>
 
 </main>
-
-<details class="support" id="support" hidden>
- <summary><span aria-hidden="true">♥</span> Support my work with crypto</summary>
- <div class="coins" id="coins"></div>
-</details>
 
 <footer><div class="wrap">
   <p>© 2026 David Feuling · DHF Media · Released under the <a href="LICENSE">MIT License</a> · Contact: <a href="mailto:dhf91@proton.me">dhf91@proton.me</a></p>
