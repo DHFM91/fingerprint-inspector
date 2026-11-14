@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fingerprint Inspector</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="title">
+      <img src="icons/icon32.png" alt="" width="20" height="20">
+      <div>
+        <h1>Fingerprint Inspector</h1>
+        <div id="site" class="muted">…</div>
+      </div>
+    </div>
+    <button id="popout" class="ghost" title="Open in a larger window">Pop out</button>
+  </header>
+
+  <nav>
+    <button data-tab="site" class="active">This site</button>
+    <button data-tab="me">My fingerprint</button>
+    <button data-tab="snaps">Snapshots</button>
+  </nav>
+
+  <main>
+    <!-- What this site did -->
+    <section id="tab-site">
+      <div class="report-bar"><button class="ghost save-png" data-report="site">Save PNG report</button></div>
+      <div id="site-summary" class="summary"></div>
+      <div id="site-list"></div>
+    </section>
+
+    <!-- What this browser gives off -->
+    <section id="tab-me" hidden>
+      <div class="report-bar"><button class="ghost save-png" data-report="me">Save PNG report</button></div>
+      <div id="me-summary" class="summary">Collecting…</div>
+      <div class="row-actions">
+        <input id="snap-label" type="text" placeholder="Label, e.g. Chrome, VPN on">
+        <button id="snap-save">Save snapshot</button>
+      </div>
+      <details class="card">
+        <summary>WebRTC IP leak test</summary>
+        <p class="muted">Checks what IP addresses WebRTC reveals. Useful with a VPN on: if your real
+          public IP shows up here while the VPN is on, sites can see it too. This contacts Google's public
+          STUN server, so it only runs when you click.</p>
+        <button id="webrtc-run">Run test</button>
+        <div id="webrtc-out"></div>
+      </details>
+      <div id="me-list"></div>
+    </section>
+
+    <!-- Saved snapshots and comparisons -->
+    <section id="tab-snaps" hidden>
+      <div class="report-bar"><button class="ghost save-png" data-report="snaps">Save PNG report</button></div>
+      <p class="muted">Save snapshots in different situations (other browsers, private windows, VPN on/off,
+        privacy settings), then tick two to see exactly what changed.</p>
+      <div id="snap-list"></div>
+      <div class="row-actions">
+        <button id="snap-compare" disabled>Compare selected</button>
+        <button id="snap-export" class="ghost">Export JSON</button>
+        <button id="snap-clear" class="ghost danger">Delete all</button>
+      </div>
+      <div id="compare-out"></div>
+    </section>
+  </main>
+
+  <script src="shared.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
