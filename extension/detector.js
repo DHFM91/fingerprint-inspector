@@ -6,8 +6,33 @@
 
 (() => {
   // Keep our own copies in case the page later replaces these globals.
-  const post = window.postMessage.bind(window);
   const later = window.setTimeout.bind(window);
+  const dispatch = EventTarget.prototype.dispatchEvent;
+  const listen = EventTarget.prototype.addEventListener;
+  const unlisten = EventTarget.prototype.removeEventListener;
+  const MakeEvent = CustomEvent;
+  const doc = document;
+
+  // ---- Private channel to relay.js ----------------------------------------
+  // Reports travel as events with a random, secret name. The secret is handed
+  // over synchronously right now, before any of the page's own scripts exist,
+  // so the website can't listen in or learn that this extension is running.
+  const SECRET = "fpi-" + Array.from(crypto.getRandomValues(new Uint32Array(4)), (n) => n.toString(36)).join("");
+  let handedOver = false;
+  function announce() {
+    if (!handedOver) dispatch.call(doc, new MakeEvent("fpi-hello", { detail: SECRET }));
+  }
+  function onReady() { announce(); }
+  function onAck(event) {
+    if (event.detail !== "ack") return;
+    // relay.js has the secret: stop answering, so nobody can ask for it later.
+    handedOver = true;
+    unlisten.call(doc, "fpi-ready", onReady);
+    unlisten.call(doc, SECRET, onAck);
+  }
+  listen.call(doc, SECRET, onAck);
+  listen.call(doc, "fpi-ready", onReady);   // relay.js loaded after us: it will ask
+  announce();                                // relay.js loaded before us: it's listening now
 
   let counts = {};
   let details = {};
@@ -20,7 +45,8 @@
     const lines = (new Error().stack || "").split("\n");
     for (const line of lines) {
       const m = line.match(/((?:https?|file):\/\/[^\s)]+)/);
-      if (m) return m[1].replace(/:\d+(?::\d+)?$/, "");
+      // Drop the line number, then any ?query or #hash: those can hold tracking IDs.
+      if (m) return m[1].replace(/:\d+(?::\d+)?$/, "").split(/[?#]/)[0];
     }
     return "(inline or unknown script)";
   }
@@ -39,11 +65,13 @@
     }
   }
 
-  // Hand the batch to relay.js (which can talk to the rest of the extension).
+  // Hand the batch to relay.js (which can talk to the rest of the extension)
+  // over the secret channel. Only text crosses, never objects.
   function flush() {
     pending = false;
     const toArrays = (o) => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, [...v]]));
-    post({ __fpi: 1, counts, details: toArrays(details), scripts: toArrays(scripts) }, "*");
+    const report = JSON.stringify({ counts, details: toArrays(details), scripts: toArrays(scripts) });
+    dispatch.call(doc, new MakeEvent(SECRET, { detail: report }));
     counts = {}; details = {}; scripts = {};
   }
 

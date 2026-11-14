@@ -3,12 +3,18 @@
   "name": "Fingerprint Inspector",
   "author": "David Feuling",
   "homepage_url": "https://davidfeuling.com/fingerprint-inspector/",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "See what browser fingerprint you give off and which fingerprinting techniques each site uses. Estimates only; all data stays on your computer.",
-  "permissions": ["storage", "downloads"],
+  "permissions": [
+    "storage",
+    "downloads"
+  ],
   "background": {
     "service_worker": "background.js",
-    "scripts": ["shared.js", "background.js"]
+    "scripts": [
+      "shared.js",
+      "background.js"
+    ]
   },
   "action": {
     "default_popup": "popup.html",
@@ -28,23 +34,36 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["detector.js"],
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "relay.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "detector.js"
+      ],
       "run_at": "document_start",
       "all_frames": true,
       "match_about_blank": true,
       "world": "MAIN"
     },
     {
-      "matches": ["<all_urls>"],
-      "js": ["relay.js"],
-      "run_at": "document_start",
-      "all_frames": true,
-      "match_about_blank": true
-    },
-    {
-      "matches": ["<all_urls>"],
-      "js": ["shared.js", "collector.js"],
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "shared.js",
+        "collector.js"
+      ],
       "run_at": "document_idle"
     }
   ],

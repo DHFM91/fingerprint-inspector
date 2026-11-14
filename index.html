@@ -117,7 +117,7 @@
 
 <header class="hero"><div class="wrap hero-grid">
   <div>
-    <div class="kicker">Browser extension · v1.2.0</div>
+    <div class="kicker">Browser extension · v1.2.1</div>
     <h1>Fingerprint Inspector</h1>
     <p class="lede">See the "fingerprint" your browser gives off to every website, and watch which fingerprinting techniques each site actually uses on you.</p>
     <div class="chips">
@@ -172,12 +172,12 @@
 <section id="download">
   <h2>Download</h2>
   <div class="download-box">
-    <p class="meta">Version 1.2.0 · 63 KB zip · For Chrome, Edge, Brave, Opera and Vivaldi, and Firefox 128 or newer · MIT License</p>
+    <p class="meta">Version 1.2.1 · 64 KB zip · For Chrome, Edge, Brave, Opera and Vivaldi, and Firefox 128 or newer · MIT License</p>
     <div class="callout">Results are <b>estimates, not proof</b>. A detection shows which browser features a page used, <b>not why</b>; many uses are legitimate. The extension is provided <b>as-is, with no warranty</b>. Please read the <a href="#disclaimer">Disclaimer</a> and <a href="#privacy">Privacy Policy</a> below.</div>
     <label class="agree"><input type="checkbox" id="agree-terms"> <span>I have read and agree to the Disclaimer and Terms of Use, and I understand the extension is provided as-is, without warranty, and that I use it at my own risk.</span></label>
     <label class="agree"><input type="checkbox" id="agree-use"> <span>I will use it only on browsers and devices I own or am authorized to test, in line with applicable laws and website terms.</span></label>
     <div class="download-row">
-      <a class="btn" id="download-btn" role="button" aria-disabled="true" tabindex="0">Download v1.2.0</a>
+      <a class="btn" id="download-btn" role="button" aria-disabled="true" tabindex="0">Download v1.2.1</a>
       <span class="small" id="download-hint">Tick both boxes to enable the download.</span>
     </div>
     <p class="small" style="margin-top:16px">Prefer to read the code first? The full source is on <a href="https://github.com/DHFM91/fingerprint-inspector" target="_blank" rel="noopener">GitHub</a>.</p>
@@ -276,7 +276,7 @@
 <section id="privacy">
   <h2>Privacy Policy</h2>
   <div class="legal"><p><em>Effective November 14, 2026</em></p>
-<p><strong>Short version: Fingerprint Inspector collects nothing and sends nothing anywhere.</strong> Everything it records stays in your browser on your computer.</p>
+<p><strong>Short version: Fingerprint Inspector collects nothing and sends nothing anywhere.</strong> Everything it records stays in your browser on your computer. The only time it contacts any server is the optional WebRTC test, and only when you click "Run test."</p>
 <h2>What the extension stores, and where</h2>
 <table>
 <thead>
@@ -288,13 +288,13 @@
 </thead>
 <tbody>
 <tr>
-<td>Fingerprinting activity seen on each tab</td>
+<td>For each open tab: the page's address (with any <code>?query</code> or <code>#fragment</code> removed), the fingerprinting techniques seen, how often, and the addresses of the scripts that used them (also with query strings removed)</td>
 <td>Your browser's session storage for the extension</td>
 <td>Cleared when the tab closes or the browser quits</td>
 </tr>
 <tr>
-<td>Snapshots you choose to save</td>
-<td>Your browser's local storage for the extension</td>
+<td>Snapshots you choose to save (the site's name and the fingerprint values shown on the My fingerprint tab)</td>
+<td>Your browser's local storage for the extension, on this device only (not synced)</td>
 <td>Until you delete them or remove the extension</td>
 </tr>
 <tr>
@@ -304,22 +304,33 @@
 </tr>
 </tbody>
 </table>
-<p>None of this is transmitted to the author or anyone else. There are no accounts, analytics, telemetry, ads, trackers or remote servers.</p>
+<p>None of this is transmitted to the author or anyone else. There are no accounts, analytics, telemetry, ads, trackers, update checks or remote servers.</p>
 <h2>Network requests</h2>
-<p>The extension makes <strong>no network requests</strong> except one, and only when you click it:</p>
+<p>The extension's code makes <strong>no network requests on its own</strong>, with one exception that only happens when you ask for it:</p>
 <ul>
-<li><strong>WebRTC IP leak test.</strong> Clicking "Run test" contacts Google's public STUN server (<code>stun.l.google.com</code>, port 19302). As with any WebRTC connection, that server sees your public IP address. Google's handling of that connection is governed by Google's own privacy policy. The results are shown only to you.</li>
+<li><strong>WebRTC IP leak test.</strong> Clicking "Run test" contacts Google's public STUN server (<code>stun.l.google.com</code>, port 19302). As with any WebRTC connection, that server sees your public IP address, and Google's handling of it is governed by Google's privacy policy. Like any WebRTC check, it may also send standard local-network discovery traffic (mDNS) on your own network. The results are shown only to you.</li>
+</ul>
+<p>Other details:</p>
+<ul>
+<li><strong>Font checks never download anything.</strong> When checking which fonts are installed, the extension skips any font name the website supplies as its own web font, because measuring such a font would make the browser download it. Those fonts are listed as "not checked on this site."</li>
+<li><strong>Links you click</strong> (such as the Disclaimer link in the extension) open web pages the same way any link does.</li>
+<li><strong>Your browser's own features</strong>, such as sync, download scanning or crash reporting, behave according to your browser's settings and its own privacy policy. The extension doesn't use or change them.</li>
+</ul>
+<h2>What websites can and can't see</h2>
+<ul>
+<li>Websites receive <strong>no data from the extension</strong>. Its internal reports travel over a private channel that is set up before a page's own scripts run, so the page can't read them.</li>
+<li>To observe fingerprinting, the extension wraps certain browser functions inside each page. It doesn't change what pages show you or the results those functions return, but a determined website may be able to tell that a function was wrapped and infer that an extension like this is installed. See section 5 of the <a href="#disclaimer">Disclaimer</a>.</li>
 </ul>
 <h2>Permissions and why they're needed</h2>
 <ul>
-<li><strong>Read data on all websites</strong> (content scripts on all sites): needed to watch which browser features each page uses and to gather your fingerprint as websites would see it. The extension reads browser and device properties and records feature usage. It does not read page text, form contents, passwords, cookies or browsing history, and it does not modify page content.</li>
+<li><strong>Read data on all websites</strong> (content scripts on all sites): needed to watch which browser features each page uses and to gather your fingerprint as websites would see it. The extension reads browser and device properties, the page's address, and which scripts call the watched features. It does not read page text, form contents, passwords, cookies or your browsing history.</li>
 <li><strong>Storage:</strong> to keep the tab results, snapshots and terms acceptance described above.</li>
 <li><strong>Downloads:</strong> to save PNG reports and JSON exports to your Downloads folder when you ask it to.</li>
 </ul>
 <h2>Reports and exports</h2>
-<p>PNG reports and JSON exports are created on your computer and saved only where you put them. They can contain details about your browser and device, such as your user agent, graphics card, screen size, timezone, languages, installed fonts and, if you ran the WebRTC test, IP addresses. <strong>Review and redact them before sharing publicly.</strong></p>
+<p>PNG reports and JSON exports are created on your computer and saved only where you put them. They can contain details about your browser and device (such as your user agent, graphics card, screen size, timezone, languages and installed fonts), the sites and script addresses you inspected, and, if you ran the WebRTC test, IP addresses. <strong>Review and redact them before sharing publicly.</strong></p>
 <h2>The website</h2>
-<p>The download page at davidfeuling.com is hosted on GitHub Pages. GitHub may log technical information about visits (such as IP addresses) under the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>. The page itself uses no cookies, analytics, trackers or third-party fonts or scripts.</p>
+<p>The download page at davidfeuling.com is hosted on GitHub Pages. GitHub may log technical information about visits (such as IP addresses) under the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>. The page itself sets no cookies and loads no analytics, trackers, or third-party fonts or scripts. Its donation QR codes are drawn in your browser, not fetched from a server.</p>
 <h2>Removing your data</h2>
 <p>Delete snapshots from the Snapshots tab, or remove the extension from your browser to erase everything it stored.</p>
 <h2>Children</h2>
@@ -344,7 +355,7 @@
     var use = document.getElementById("agree-use");
     var btn = document.getElementById("download-btn");
     var hint = document.getElementById("download-hint");
-    var FILE = "downloads/fingerprint-inspector-v1.2.0.zip";
+    var FILE = "downloads/fingerprint-inspector-v1.2.1.zip";
     function update() {
       var ok = terms.checked && use.checked;
       btn.setAttribute("aria-disabled", ok ? "false" : "true");

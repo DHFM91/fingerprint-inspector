@@ -31,7 +31,7 @@
     cv.width = 300; cv.height = 70;
     const x = cv.getContext("2d");
     x.textBaseline = "top";
-    x.font = "16px Arial";
+    x.font = "16px sans-serif"; // a generic family: a site can't swap in a web font for it
     x.fillStyle = "#f60";
     x.fillRect(110, 2, 70, 22);
     x.fillStyle = "#069";
@@ -61,16 +61,30 @@
     "Baskerville", "Didot", "DejaVu Sans", "Liberation Sans", "Ubuntu", "Noto Sans",
     "Roboto", "Open Sans", "Fira Sans", "Source Code Pro"
   ];
+  // Font names this website supplies itself as web fonts. Measuring one of those
+  // would make the browser download it from the site, so they are never checked.
+  function siteFontNames() {
+    const names = new Set();
+    try {
+      document.fonts.forEach((f) => names.add(f.family.replace(/^["']|["']$/g, "").toLowerCase()));
+    } catch (e) { /* not supported */ }
+    return names;
+  }
+
   function detectFonts() {
+    const skip = siteFontNames();
     const x = document.createElement("canvas").getContext("2d");
     const sample = "mmmmmmmmmmlli1WW@#&";
     const bases = ["monospace", "sans-serif", "serif"];
     const baseWidth = {};
     for (const b of bases) { x.font = `72px ${b}`; baseWidth[b] = x.measureText(sample).width; }
-    return FONTS.filter((font) => bases.some((b) => {
+    const checkable = FONTS.filter((font) => !skip.has(font.toLowerCase()));
+    const found = checkable.filter((font) => bases.some((b) => {
       x.font = `72px "${font}", ${b}`;
       return x.measureText(sample).width !== baseWidth[b];
     }));
+    const skipped = FONTS.filter((font) => skip.has(font.toLowerCase()));
+    return skipped.length ? [...found, `(not checked on this site: ${skipped.join(", ")})`] : found;
   }
 
   // ---- WebGL -------------------------------------------------------------
@@ -223,8 +237,7 @@
     add("Preferences", "Connection type", safe(() => n.connection ? n.connection.effectiveType : "(not reported)"), "low", true);
 
     return {
-      site: location.hostname || location.href,
-      url: location.href,
+      site: location.hostname || "(local page)",
       time: Date.now(),
       noise: { canvas: canvasNoise, audio: audioNoise },
       components: c
