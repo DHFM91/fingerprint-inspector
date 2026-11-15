@@ -6,9 +6,9 @@ A browser extension that shows:
 2. **My fingerprint:** what your browser gives away to any website, grouped and rated by how identifying each value is, rolled up into a single "stable ID".
 3. **Snapshots:** saved fingerprints from different situations, with a side-by-side comparison of exactly what changed.
 
-Nothing is sent anywhere. Results live in your browser's local extension storage. The only network request is the optional WebRTC leak test, which runs only when you click it.
+It's designed to keep everything in your browser's local extension storage and not to send data anywhere. The only server it's designed to contact is Google's STUN server, during the optional WebRTC leak test, which runs only when you click it.
 
-> **Important:** Results are estimates, not proof, and can be incomplete or wrong. A detection shows which browser features a page used, not why; many uses are legitimate. Use it only on browsers and devices you own or are allowed to test. Provided as-is with no warranty. You'll be asked to accept the full terms in [DISCLAIMER.md](DISCLAIMER.md) on first use. Privacy details: [PRIVACY.md](PRIVACY.md).
+> **Important:** This is a vibecoded hobby project (built with AI-assisted coding) that has not been independently security-audited, so it may contain bugs, including unforeseen data leaks or privacy problems. Use it entirely at your own risk; the author accepts no liability. Results are estimates, not proof, and can be incomplete or wrong. A detection shows which browser features a page used, not why; many uses are legitimate. Use it only on browsers and devices you own or are allowed to test. Provided as-is with no warranty. You'll be asked to accept the full terms in [DISCLAIMER.md](DISCLAIMER.md) on first use. Privacy details: [PRIVACY.md](PRIVACY.md).
 
 ## Install
 
@@ -63,6 +63,8 @@ Busy news and shopping sites tend to light up the badge more than personal sites
 
 ## Limits to know about
 
+- **Vibecoded and unaudited.** Built with AI-assisted coding and not reviewed by a security professional. Unforeseen bugs, including data leaks, are possible.
+
 - **"Very identifying" is a rough guide, not a measurement.** Real uniqueness depends on how many other people share your values, which needs a large database. For that comparison, also try https://coveryourtracks.eff.org and https://amiunique.org.
 - **Some fingerprinting can slip past detection:** scripts running in web workers, and tricks that grab untouched browser functions from a fresh iframe before the extension is injected.
 - **Weak signals have innocent uses.** Reading screen size or timezone is normal for layouts and clocks. The "strong" label marks patterns that are rarely needed for anything except identification.
@@ -71,7 +73,7 @@ Busy news and shopping sites tend to light up the badge more than personal sites
 ## Disclaimer, privacy and license
 
 - [DISCLAIMER.md](DISCLAIMER.md): terms of use, accuracy limits, no warranty, limitation of liability.
-- [PRIVACY.md](PRIVACY.md): what is stored (only on your computer), the one optional network request, and why each permission is needed.
+- [PRIVACY.md](PRIVACY.md): what is stored and where, the one intended network request, and why each permission is needed.
 - [LICENSE](LICENSE): MIT License. Copyright (c) 2026 David Feuling.
 
 Not affiliated with or endorsed by Google, Microsoft, Mozilla, Brave, Opera, Vivaldi, the EFF, AmIUnique or any website the extension inspects. Product names are trademarks of their respective owners.

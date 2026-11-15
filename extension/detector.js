@@ -16,7 +16,7 @@
   // ---- Private channel to relay.js ----------------------------------------
   // Reports travel as events with a random, secret name. The secret is handed
   // over synchronously right now, before any of the page's own scripts exist,
-  // so the website can't listen in or learn that this extension is running.
+  // which is meant to stop the website listening in or learning that this extension is running.
   const SECRET = "fpi-" + Array.from(crypto.getRandomValues(new Uint32Array(4)), (n) => n.toString(36)).join("");
   let handedOver = false;
   function announce() {

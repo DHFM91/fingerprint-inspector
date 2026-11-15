@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#efebf3">
 <title>Fingerprint Inspector — David Feuling</title>
-<meta name="description" content="A free, open-source browser extension that shows what fingerprint your browser gives off and which fingerprinting techniques each site uses. Nothing leaves your computer.">
+<meta name="description" content="A free, open-source browser extension that shows what fingerprint your browser gives off and which fingerprinting techniques each site uses. A vibecoded hobby project: estimates only, use at your own risk.">
 <meta name="referrer" content="no-referrer">
 <link rel="icon" href="images/icon.png">
 <style>
@@ -30,6 +30,7 @@
   .kicker { color: var(--accent); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: 12px; }
   h1 { font-size: clamp(38px, 6.5vw, 64px); margin: 8px 0 14px; }
   .lede { color: var(--muted); font-size: 18px; margin: 0 0 20px; max-width: 560px; }
+  .vibe-note { font-size: 14px; color: #6b4b12; background: var(--warn-bg); border: 1px solid var(--warn-line); border-radius: 10px; padding: 9px 13px; margin: 0 0 18px; max-width: 560px; }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
   .chip { font-size: 13px; font-weight: 600; padding: 5px 12px; border-radius: 999px; background: rgba(255,255,255,.7); border: 1px solid var(--line); color: var(--muted); }
   .btn { display: inline-block; font-weight: 600; font-size: 16px; padding: 12px 24px; border-radius: 999px; background: var(--accent); color: #fff; text-decoration: none; border: 0; cursor: pointer; box-shadow: 0 0 0 4px rgba(106,76,156,.16), 0 6px 16px rgba(60,40,90,.18); }
@@ -117,13 +118,14 @@
 
 <header class="hero"><div class="wrap hero-grid">
   <div>
-    <div class="kicker">Browser extension · v1.2.1</div>
+    <div class="kicker">Browser extension · v1.2.2</div>
     <h1>Fingerprint Inspector</h1>
     <p class="lede">See the "fingerprint" your browser gives off to every website, and watch which fingerprinting techniques each site actually uses on you.</p>
+    <p class="vibe-note"><b>Heads up:</b> this is a vibecoded hobby project (built with AI-assisted coding) and hasn't been professionally security-audited. Unforeseen bugs, including data leaks, are possible. Use it at your own risk.</p>
     <div class="chips">
       <span class="chip">Free &amp; open source</span>
       <span class="chip">Chrome · Edge · Brave · Firefox</span>
-      <span class="chip">Nothing leaves your computer</span>
+      <span class="chip">Designed to keep data local</span>
     </div>
     <a class="btn" href="#download">Download</a><a class="btn ghost" href="#how">How it works</a>
     <details class="support" id="support" hidden>
@@ -172,13 +174,14 @@
 <section id="download">
   <h2>Download</h2>
   <div class="download-box">
-    <p class="meta">Version 1.2.1 · 64 KB zip · For Chrome, Edge, Brave, Opera and Vivaldi, and Firefox 128 or newer · MIT License</p>
-    <div class="callout">Results are <b>estimates, not proof</b>. A detection shows which browser features a page used, <b>not why</b>; many uses are legitimate. The extension is provided <b>as-is, with no warranty</b>. Please read the <a href="#disclaimer">Disclaimer</a> and <a href="#privacy">Privacy Policy</a> below.</div>
+    <p class="meta">Version 1.2.2 · 66 KB zip · For Chrome, Edge, Brave, Opera and Vivaldi, and Firefox 128 or newer · MIT License</p>
+    <div class="callout"><b>Vibecoded, not audited.</b> This hobby project was built with AI-assisted coding and has not been independently security-audited. It is <b>designed</b> to keep your data on your computer, but bugs, including <b>unforeseen data leaks</b>, may exist. Use is <b>entirely at your own risk</b>; the author accepts <b>no liability</b>.<br><br>Results are <b>estimates, not proof</b>. A detection shows which browser features a page used, <b>not why</b>; many uses are legitimate. The extension is provided <b>as-is, with no warranty</b>. Please read the <a href="#disclaimer">Disclaimer</a> and <a href="#privacy">Privacy Policy</a> below.</div>
     <label class="agree"><input type="checkbox" id="agree-terms"> <span>I have read and agree to the Disclaimer and Terms of Use, and I understand the extension is provided as-is, without warranty, and that I use it at my own risk.</span></label>
+    <label class="agree"><input type="checkbox" id="agree-risk"> <span>I understand this extension was vibecoded and has not been professionally audited, that it may contain bugs including unforeseen data leaks, and that I install and use it entirely at my own risk, with no liability for the author.</span></label>
     <label class="agree"><input type="checkbox" id="agree-use"> <span>I will use it only on browsers and devices I own or am authorized to test, in line with applicable laws and website terms.</span></label>
     <div class="download-row">
-      <a class="btn" id="download-btn" role="button" aria-disabled="true" tabindex="0">Download v1.2.1</a>
-      <span class="small" id="download-hint">Tick both boxes to enable the download.</span>
+      <a class="btn" id="download-btn" role="button" aria-disabled="true" tabindex="0">Download v1.2.2</a>
+      <span class="small" id="download-hint">Tick all three boxes to enable the download.</span>
     </div>
     <p class="small" style="margin-top:16px">Prefer to read the code first? The full source is on <a href="https://github.com/DHFM91/fingerprint-inspector" target="_blank" rel="noopener">GitHub</a>.</p>
   </div>
@@ -218,7 +221,9 @@
   <details class="faq"><summary>Does a detection mean a site is tracking me?</summary>
     <p>Not necessarily. It means the page used browser features that fingerprinting relies on. Many sites use them for fraud prevention, bot and abuse defense, account security or layout, and scripts may come from third parties the site doesn't control.</p></details>
   <details class="faq"><summary>Is my data sent anywhere?</summary>
-    <p>No. Everything stays in your browser. The only network request is the optional WebRTC test, which contacts Google's public STUN server when you click it. See the <a href="#privacy">Privacy Policy</a>.</p></details>
+    <p>It isn't designed to send any. It's built to keep everything in your browser, and the only server it's designed to contact is Google's public STUN server, during the optional WebRTC test you start yourself. Because it was vibecoded and hasn't been professionally audited, unforeseen leaks can't be ruled out. See the <a href="#privacy">Privacy Policy</a>.</p></details>
+  <details class="faq"><summary>Who made this, and has it been audited?</summary>
+    <p>It's a personal hobby project by David Feuling, vibecoded with AI-assisted coding. It was tested by its author but has not been reviewed by an independent security professional. The source is public so anyone can inspect it. If you find a problem, please email dhf91@proton.me.</p></details>
   <details class="faq"><summary>Could having it installed make my browser stand out?</summary>
     <p>Possibly. The extension watches browser functions as pages use them, and some sites can detect that kind of change. If a site behaves oddly or asks for extra verification, disable the extension for that site.</p></details>
   <details class="faq"><summary>How accurate is the "very identifying" rating?</summary>
@@ -229,8 +234,10 @@
 
 <section id="disclaimer">
   <h2>Disclaimer and Terms of Use</h2>
-  <div class="legal"><p><em>Effective November 14, 2026</em></p>
+  <div class="legal"><p><em>Effective November 14, 2026 (updated for v1.2.2)</em></p>
 <p>Fingerprint Inspector ("the extension") is a free, open-source browser extension by David Feuling (DHF Media) that shows what a web browser reveals to websites and which fingerprinting-related browser features a web page uses. By installing or using the extension, or the website and files that distribute it, you agree to these terms. If you do not agree, do not install or use it.</p>
+<h2>Read this first: vibecoded software, no guarantees</h2>
+<p>Fingerprint Inspector is a hobby project that was <strong>vibecoded</strong>, meaning it was built with AI-assisted coding rather than by a professional security team. It has <strong>not been independently security-audited</strong>. Although it was tested, it may contain bugs, including <strong>unforeseen data leaks, privacy problems or security flaws</strong>, and descriptions of how it works (including the Privacy Policy) describe its intended design and the author's own testing, not a guarantee. <strong>Installing and using it is entirely at your own risk, and the author accepts no liability for any resulting harm, including any exposure, leak or loss of data.</strong> If those risks aren't acceptable to you, do not install it.</p>
 <h2>1. Not professional advice</h2>
 <p>The extension and its documentation are for general education and personal curiosity only. Nothing it shows, and nothing in its reports or documentation, is legal, security, privacy, compliance or technical advice. For decisions that matter (legal compliance, security assessments, privacy obligations, disputes), consult a qualified professional.</p>
 <h2>2. Accuracy and limitations</h2>
@@ -257,11 +264,11 @@
 <h2>5. Website compatibility</h2>
 <p>To observe fingerprinting, the extension wraps certain browser functions inside web pages. These wrappers pass calls through unchanged, but some websites may detect browser extensions, behave differently, show extra verification steps, treat your visit as automated, restrict features, or fail to work correctly. If a site misbehaves, disable the extension for that site or remove it. You are responsible for any effect its use has on your accounts, transactions or online activity.</p>
 <h2>6. Privacy</h2>
-<p>The extension does not collect, transmit, sell or share your data. See <a href="#privacy">Privacy Policy</a> for details, including the one optional network request (the WebRTC test) and what saved reports contain.</p>
+<p>The extension is designed not to collect, transmit, sell or share your data, but as explained above, this cannot be guaranteed. See <a href="#privacy">Privacy Policy</a> for details, including the one intended network request (the optional WebRTC test) and what saved reports contain.</p>
 <h2>7. No warranty</h2>
-<p>THE EXTENSION, ITS SOURCE CODE, ITS DOCUMENTATION AND THE WEBSITE DISTRIBUTING IT ARE PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, NON-INFRINGEMENT, AND UNINTERRUPTED OR ERROR-FREE OPERATION. Updates, support and continued availability are not guaranteed.</p>
+<p>THE EXTENSION, ITS SOURCE CODE, ITS DOCUMENTATION AND THE WEBSITE DISTRIBUTING IT ARE PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, SECURITY, PRIVACY, NON-INFRINGEMENT, AND UNINTERRUPTED OR ERROR-FREE OPERATION. Updates, support and continued availability are not guaranteed.</p>
 <h2>8. Limitation of liability</h2>
-<p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY OR PUNITIVE DAMAGES, OR ANY LOSS OF DATA, PROFITS, ACCESS, ACCOUNTS OR GOODWILL, ARISING OUT OF OR IN CONNECTION WITH THE INSTALLATION, USE OR INABILITY TO USE THE EXTENSION, RELIANCE ON ITS RESULTS, WEBSITE MALFUNCTIONS, OR ANY SHARING OF ITS REPORTS, WHETHER IN CONTRACT, TORT (INCLUDING NEGLIGENCE) OR OTHERWISE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+<p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY OR PUNITIVE DAMAGES, OR ANY LOSS, LEAK OR EXPOSURE OF DATA, OR LOSS OF PROFITS, ACCESS, ACCOUNTS OR GOODWILL, ARISING OUT OF OR IN CONNECTION WITH THE INSTALLATION, USE OR INABILITY TO USE THE EXTENSION, RELIANCE ON ITS RESULTS, BUGS OR DEFECTS IN IT, WEBSITE MALFUNCTIONS, OR ANY SHARING OF ITS REPORTS, WHETHER IN CONTRACT, TORT (INCLUDING NEGLIGENCE) OR OTHERWISE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
 <p>Some jurisdictions do not allow certain warranty exclusions or liability limits, so some of the above may not apply to you. In that case, they apply to the fullest extent permitted.</p>
 <h2>9. Your responsibility</h2>
 <p>You use the extension at your own risk and are solely responsible for how you use it and its results. To the extent permitted by law, you agree to hold harmless the author and contributors from claims arising from your use or misuse of the extension, your violation of these terms, or your violation of any law or third-party right.</p>
@@ -275,8 +282,10 @@
 
 <section id="privacy">
   <h2>Privacy Policy</h2>
-  <div class="legal"><p><em>Effective November 14, 2026</em></p>
-<p><strong>Short version: Fingerprint Inspector collects nothing and sends nothing anywhere.</strong> Everything it records stays in your browser on your computer. The only time it contacts any server is the optional WebRTC test, and only when you click "Run test."</p>
+  <div class="legal"><p><em>Effective November 14, 2026 (updated for v1.2.2)</em></p>
+<p><strong>Short version: Fingerprint Inspector is designed to keep everything it records in your browser on your computer, and is not designed to collect or send your data.</strong> The only server it is designed to contact is Google's STUN server, during the optional WebRTC test, and only when you click "Run test."</p>
+<h2>No guarantees: please read</h2>
+<p>Fingerprint Inspector is a hobby project that was <strong>vibecoded</strong> (built with AI-assisted coding) and has <strong>not been independently security-audited</strong>. This policy describes how the extension is <em>designed</em> to work and how it behaved in the author's own testing. It cannot rule out bugs, including <strong>unforeseen data leaks or privacy problems</strong>, in your browser, version or setup. You install and use it <strong>entirely at your own risk</strong>, and the author accepts no liability for any outcome, including any exposure or loss of data. See the <a href="#disclaimer">Disclaimer</a>. If you find a problem, please report it to dhf91@proton.me.</p>
 <h2>What the extension stores, and where</h2>
 <table>
 <thead>
@@ -304,37 +313,37 @@
 </tr>
 </tbody>
 </table>
-<p>None of this is transmitted to the author or anyone else. There are no accounts, analytics, telemetry, ads, trackers, update checks or remote servers.</p>
+<p>The extension is not designed to transmit any of this to the author or anyone else. It has no accounts, analytics, telemetry, ads, trackers, update checks or remote servers.</p>
 <h2>Network requests</h2>
-<p>The extension's code makes <strong>no network requests on its own</strong>, with one exception that only happens when you ask for it:</p>
+<p>The extension is <strong>not designed to make network requests on its own</strong>. The one intended exception only happens when you ask for it:</p>
 <ul>
 <li><strong>WebRTC IP leak test.</strong> Clicking "Run test" contacts Google's public STUN server (<code>stun.l.google.com</code>, port 19302). As with any WebRTC connection, that server sees your public IP address, and Google's handling of it is governed by Google's privacy policy. Like any WebRTC check, it may also send standard local-network discovery traffic (mDNS) on your own network. The results are shown only to you.</li>
 </ul>
 <p>Other details:</p>
 <ul>
-<li><strong>Font checks never download anything.</strong> When checking which fonts are installed, the extension skips any font name the website supplies as its own web font, because measuring such a font would make the browser download it. Those fonts are listed as "not checked on this site."</li>
+<li><strong>Font checks are designed to avoid downloads.</strong> When checking which fonts are installed, the extension skips any font name the website supplies as its own web font, because measuring such a font would make the browser download it. Those fonts are listed as "not checked on this site."</li>
 <li><strong>Links you click</strong> (such as the Disclaimer link in the extension) open web pages the same way any link does.</li>
 <li><strong>Your browser's own features</strong>, such as sync, download scanning or crash reporting, behave according to your browser's settings and its own privacy policy. The extension doesn't use or change them.</li>
 </ul>
-<h2>What websites can and can't see</h2>
+<h2>What websites are meant to see</h2>
 <ul>
-<li>Websites receive <strong>no data from the extension</strong>. Its internal reports travel over a private channel that is set up before a page's own scripts run, so the page can't read them.</li>
+<li>The extension is <strong>designed not to pass data to websites</strong>. Its internal reports travel over a private channel set up before a page's own scripts run, which is meant to keep the page from reading them.</li>
 <li>To observe fingerprinting, the extension wraps certain browser functions inside each page. It doesn't change what pages show you or the results those functions return, but a determined website may be able to tell that a function was wrapped and infer that an extension like this is installed. See section 5 of the <a href="#disclaimer">Disclaimer</a>.</li>
 </ul>
 <h2>Permissions and why they're needed</h2>
 <ul>
-<li><strong>Read data on all websites</strong> (content scripts on all sites): needed to watch which browser features each page uses and to gather your fingerprint as websites would see it. The extension reads browser and device properties, the page's address, and which scripts call the watched features. It does not read page text, form contents, passwords, cookies or your browsing history.</li>
+<li><strong>Read data on all websites</strong> (content scripts on all sites): needed to watch which browser features each page uses and to gather your fingerprint as websites would see it. The extension reads browser and device properties, the page's address, and which scripts call the watched features. It is not designed to read page text, form contents, passwords, cookies or your browsing history.</li>
 <li><strong>Storage:</strong> to keep the tab results, snapshots and terms acceptance described above.</li>
 <li><strong>Downloads:</strong> to save PNG reports and JSON exports to your Downloads folder when you ask it to.</li>
 </ul>
 <h2>Reports and exports</h2>
 <p>PNG reports and JSON exports are created on your computer and saved only where you put them. They can contain details about your browser and device (such as your user agent, graphics card, screen size, timezone, languages and installed fonts), the sites and script addresses you inspected, and, if you ran the WebRTC test, IP addresses. <strong>Review and redact them before sharing publicly.</strong></p>
 <h2>The website</h2>
-<p>The download page at davidfeuling.com is hosted on GitHub Pages. GitHub may log technical information about visits (such as IP addresses) under the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>. The page itself sets no cookies and loads no analytics, trackers, or third-party fonts or scripts. Its donation QR codes are drawn in your browser, not fetched from a server.</p>
+<p>The download page at davidfeuling.com is hosted on GitHub Pages. GitHub may log technical information about visits (such as IP addresses) under the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>. The page itself is built without cookies, analytics, trackers, or third-party fonts or scripts, and its donation QR codes are drawn in your browser rather than fetched from a server.</p>
 <h2>Removing your data</h2>
 <p>Delete snapshots from the Snapshots tab, or remove the extension from your browser to erase everything it stored.</p>
 <h2>Children</h2>
-<p>The extension is not directed at children and collects no personal information from anyone.</p>
+<p>The extension is not directed at children and is not designed to collect personal information from anyone.</p>
 <h2>Changes and contact</h2>
 <p>Updates to this policy are published with the project at https://davidfeuling.com/fingerprint-inspector/. Questions: dhf91@proton.me</p></div>
 </section>
@@ -344,7 +353,7 @@
 <footer><div class="wrap">
   <p>© 2026 David Feuling · DHF Media · Released under the <a href="LICENSE">MIT License</a> · Contact: <a href="mailto:dhf91@proton.me">dhf91@proton.me</a></p>
   <p>Fingerprint Inspector is an independent project, not affiliated with or endorsed by Google, Microsoft, Mozilla, Brave, Opera, Vivaldi or any website it inspects. Product names are trademarks of their respective owners. Screenshots show an example test page.</p>
-  <p>This page uses no cookies, analytics, trackers or third-party fonts or scripts.</p>
+  <p>Fingerprint Inspector is a vibecoded hobby project provided as-is, with no warranty; use it at your own risk. This page is built without cookies, analytics, trackers or third-party fonts or scripts.</p>
 </div></footer>
 
 <script src="js/support.js"></script>
@@ -353,18 +362,20 @@
   (function () {
     var terms = document.getElementById("agree-terms");
     var use = document.getElementById("agree-use");
+    var risk = document.getElementById("agree-risk");
     var btn = document.getElementById("download-btn");
     var hint = document.getElementById("download-hint");
-    var FILE = "downloads/fingerprint-inspector-v1.2.1.zip";
+    var FILE = "downloads/fingerprint-inspector-v1.2.2.zip";
     function update() {
-      var ok = terms.checked && use.checked;
+      var ok = terms.checked && use.checked && risk.checked;
       btn.setAttribute("aria-disabled", ok ? "false" : "true");
       if (ok) { btn.href = FILE; btn.setAttribute("download", ""); hint.textContent = "Thanks. Install steps are below."; }
-      else { btn.removeAttribute("href"); btn.removeAttribute("download"); hint.textContent = "Tick both boxes to enable the download."; }
+      else { btn.removeAttribute("href"); btn.removeAttribute("download"); hint.textContent = "Tick all three boxes to enable the download."; }
     }
     terms.addEventListener("change", update);
     use.addEventListener("change", update);
-    btn.addEventListener("click", function (e) { if (btn.getAttribute("aria-disabled") === "true") { e.preventDefault(); hint.textContent = "Please tick both boxes first."; } });
+    risk.addEventListener("change", update);
+    btn.addEventListener("click", function (e) { if (btn.getAttribute("aria-disabled") === "true") { e.preventDefault(); hint.textContent = "Please tick all three boxes first."; } });
     update();
   })();
 </script>

@@ -12,11 +12,13 @@ A free, open-source browser extension that shows the "fingerprint" your browser 
 - **My fingerprint:** everything your browser reveals, rated by how identifying each value is, rolled up into one stable ID. It also detects when your browser randomizes results to protect you.
 - **Snapshots:** save your fingerprint in different situations (other browsers, private windows, VPN on or off) and compare exactly what changed.
 - **PNG reports:** save a full-length image report of any tab to your Downloads folder.
-- **Private by design:** nothing is collected or sent anywhere. The only network request is an optional WebRTC leak test that you start yourself.
+- **Designed to keep data local:** it isn't built to collect or send your data. The only server it's designed to contact is Google's STUN server, during an optional WebRTC leak test you start yourself.
 
 Works in Chrome, Edge, Brave, Opera, Vivaldi, and Firefox 128 or newer.
 
 ## Important
+
+**This is a vibecoded hobby project** (built with AI-assisted coding) and has **not been independently security-audited**. It may contain bugs, including unforeseen data leaks or privacy problems. **Use it entirely at your own risk; the author accepts no liability.**
 
 Results are **estimates, not proof**, and can be incomplete or wrong. A detection shows which browser features a page used, **not why**; many uses are legitimate (fraud prevention, bot defense, layout). Use it only on browsers and devices you own or are authorized to test. The extension is provided **as-is, with no warranty**. Read the full [Disclaimer and Terms of Use](DISCLAIMER.md) and [Privacy Policy](PRIVACY.md) before use; the extension asks you to accept them on first run.
 

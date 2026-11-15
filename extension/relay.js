@@ -3,7 +3,7 @@
 // them to the background worker.
 //
 // The two scripts agree on a secret event name before the page's own scripts run,
-// so the website can't read these reports or see the extension talking.
+// which is meant to keep the website from reading these reports or seeing the extension talking.
 
 (() => {
   const api = globalThis.browser ?? globalThis.chrome;

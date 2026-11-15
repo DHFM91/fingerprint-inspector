@@ -1,8 +1,12 @@
 # Fingerprint Inspector: Disclaimer and Terms of Use
 
-*Effective November 14, 2026*
+*Effective November 14, 2026 (updated for v1.2.2)*
 
 Fingerprint Inspector ("the extension") is a free, open-source browser extension by David Feuling (DHF Media) that shows what a web browser reveals to websites and which fingerprinting-related browser features a web page uses. By installing or using the extension, or the website and files that distribute it, you agree to these terms. If you do not agree, do not install or use it.
+
+## Read this first: vibecoded software, no guarantees
+
+Fingerprint Inspector is a hobby project that was **vibecoded**, meaning it was built with AI-assisted coding rather than by a professional security team. It has **not been independently security-audited**. Although it was tested, it may contain bugs, including **unforeseen data leaks, privacy problems or security flaws**, and descriptions of how it works (including the Privacy Policy) describe its intended design and the author's own testing, not a guarantee. **Installing and using it is entirely at your own risk, and the author accepts no liability for any resulting harm, including any exposure, leak or loss of data.** If those risks aren't acceptable to you, do not install it.
 
 ## 1. Not professional advice
 
@@ -41,15 +45,15 @@ To observe fingerprinting, the extension wraps certain browser functions inside 
 
 ## 6. Privacy
 
-The extension does not collect, transmit, sell or share your data. See [PRIVACY.md](PRIVACY.md) for details, including the one optional network request (the WebRTC test) and what saved reports contain.
+The extension is designed not to collect, transmit, sell or share your data, but as explained above, this cannot be guaranteed. See [PRIVACY.md](PRIVACY.md) for details, including the one intended network request (the optional WebRTC test) and what saved reports contain.
 
 ## 7. No warranty
 
-THE EXTENSION, ITS SOURCE CODE, ITS DOCUMENTATION AND THE WEBSITE DISTRIBUTING IT ARE PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, NON-INFRINGEMENT, AND UNINTERRUPTED OR ERROR-FREE OPERATION. Updates, support and continued availability are not guaranteed.
+THE EXTENSION, ITS SOURCE CODE, ITS DOCUMENTATION AND THE WEBSITE DISTRIBUTING IT ARE PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, SECURITY, PRIVACY, NON-INFRINGEMENT, AND UNINTERRUPTED OR ERROR-FREE OPERATION. Updates, support and continued availability are not guaranteed.
 
 ## 8. Limitation of liability
 
-TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY OR PUNITIVE DAMAGES, OR ANY LOSS OF DATA, PROFITS, ACCESS, ACCOUNTS OR GOODWILL, ARISING OUT OF OR IN CONNECTION WITH THE INSTALLATION, USE OR INABILITY TO USE THE EXTENSION, RELIANCE ON ITS RESULTS, WEBSITE MALFUNCTIONS, OR ANY SHARING OF ITS REPORTS, WHETHER IN CONTRACT, TORT (INCLUDING NEGLIGENCE) OR OTHERWISE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY OR PUNITIVE DAMAGES, OR ANY LOSS, LEAK OR EXPOSURE OF DATA, OR LOSS OF PROFITS, ACCESS, ACCOUNTS OR GOODWILL, ARISING OUT OF OR IN CONNECTION WITH THE INSTALLATION, USE OR INABILITY TO USE THE EXTENSION, RELIANCE ON ITS RESULTS, BUGS OR DEFECTS IN IT, WEBSITE MALFUNCTIONS, OR ANY SHARING OF ITS REPORTS, WHETHER IN CONTRACT, TORT (INCLUDING NEGLIGENCE) OR OTHERWISE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 Some jurisdictions do not allow certain warranty exclusions or liability limits, so some of the above may not apply to you. In that case, they apply to the fullest extent permitted.
 

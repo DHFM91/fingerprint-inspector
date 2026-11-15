@@ -109,19 +109,21 @@ var FPI = (() => {
   }
 
   // ---- Terms shown before first use (bump TERMS_VERSION if they change) ----
-  const TERMS_VERSION = "1";
+  const TERMS_VERSION = "2";
   const DISCLAIMER_URL = "https://davidfeuling.com/fingerprint-inspector/#disclaimer";
   const TERMS = [
+    ["Vibecoded, not professionally audited.", "This is a hobby project built with AI-assisted coding (\"vibecoded\"). It has not been independently security-audited and may contain bugs, including unforeseen data leaks or privacy problems."],
     ["Estimates, not proof.", "Results can be incomplete or wrong. Ratings like \"very identifying\" are rough guides, not measurements."],
     ["A detection is not an accusation.", "It shows which browser features a page used, not why. Many uses are legitimate, such as fraud prevention, bot defense and page layout."],
     ["Your own browsers only.", "Use it on browsers and devices you own or are allowed to test, and follow the law and each site's terms."],
     ["Sites may act differently.", "The extension watches browser functions as pages use them. Some sites may notice, behave differently or break. Turn it off for any site that misbehaves."],
-    ["Nothing leaves your computer.", "No data is collected or sent anywhere. The one exception is the optional WebRTC test, which contacts Google's STUN server only when you start it."],
-    ["No warranty.", "Provided as-is, free of charge. You use it at your own risk, and the author is not liable for any outcome of using it or relying on its results."]
+    ["Designed to keep data on your computer.", "It isn't built to collect or send your data. The only server it's designed to contact is Google's STUN server, during the optional WebRTC test you start yourself. Because of the first point, this can't be guaranteed."],
+    ["Entirely at your own risk.", "Provided as-is, free of charge, with no warranty. The author accepts no liability for any outcome of installing or using it or relying on its results, including any exposure or loss of data."]
   ];
   const REPORT_NOTE =
     "Results are estimates from one browser at one moment. A detected technique shows which browser features a page used, " +
-    "not why; many uses are legitimate. Not legal, security or privacy advice. Provided as-is with no warranty. " +
+    "not why; many uses are legitimate. Not legal, security or privacy advice. Vibecoded hobby project, not professionally audited; " +
+    "may contain errors. Provided as-is with no warranty; use at your own risk. " +
     "This report describes your browser and device, so review it before sharing.";
 
   return { hash, prettyId, analyze, strongCount, TECHNIQUES, TERMS_VERSION, DISCLAIMER_URL, TERMS, REPORT_NOTE };

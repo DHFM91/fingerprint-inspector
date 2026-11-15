@@ -286,7 +286,7 @@ $("#webrtc-run").addEventListener("click", async () => {
     });
     pc.close();
   } catch (e) {
-    fill(out, el("div", { class: "warn good" }, "WebRTC is blocked or disabled in this browser, so it can't leak your IP."));
+    fill(out, el("div", { class: "warn good" }, "WebRTC appears to be blocked or disabled in this browser, so this test found no IP addresses."));
     return;
   }
 

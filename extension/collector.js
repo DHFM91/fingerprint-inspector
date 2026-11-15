@@ -31,7 +31,7 @@
     cv.width = 300; cv.height = 70;
     const x = cv.getContext("2d");
     x.textBaseline = "top";
-    x.font = "16px sans-serif"; // a generic family: a site can't swap in a web font for it
+    x.font = "16px sans-serif"; // a generic family, so a site's web fonts aren't used (or downloaded) here
     x.fillStyle = "#f60";
     x.fillRect(110, 2, 70, 22);
     x.fillStyle = "#069";
@@ -62,7 +62,7 @@
     "Roboto", "Open Sans", "Fira Sans", "Source Code Pro"
   ];
   // Font names this website supplies itself as web fonts. Measuring one of those
-  // would make the browser download it from the site, so they are never checked.
+  // would make the browser download it from the site, so they are skipped.
   function siteFontNames() {
     const names = new Set();
     try {

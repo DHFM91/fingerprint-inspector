@@ -3,8 +3,8 @@
   "name": "Fingerprint Inspector",
   "author": "David Feuling",
   "homepage_url": "https://davidfeuling.com/fingerprint-inspector/",
-  "version": "1.2.1",
-  "description": "See what browser fingerprint you give off and which fingerprinting techniques each site uses. Estimates only; all data stays on your computer.",
+  "version": "1.2.2",
+  "description": "See what browser fingerprint you give off and which fingerprinting techniques each site uses. Vibecoded hobby project: estimates only, use at your own risk.",
   "permissions": [
     "storage",
     "downloads"
